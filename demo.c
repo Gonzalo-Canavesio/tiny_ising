@@ -109,6 +109,12 @@ int main(void) {
   // Seed the generator
   set_seed(SEED);
 
+  for (size_t i = 0; i < 20; i++)
+  {
+    printf("%lf\n", random_probability());
+  }
+  
+
   gl2d_t gl2d = gl2d_init("tiny_ising", L, L);
 
   // start timer

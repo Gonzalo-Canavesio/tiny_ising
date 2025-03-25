@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "gl2d.h": "c"
+        "gl2d.h": "c",
+        "assert.h": "c"
     }
 }
