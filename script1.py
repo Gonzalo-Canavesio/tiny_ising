@@ -12,15 +12,15 @@ FILES_VERSIONS = [
     ["v2/ising.c", "v2/tiny_ising.c", "v2/xoshiro256plus.c"],
 ]
 
-VERSIONS = ["v0", "v1", "v2"]
-
 for files in FILES_VERSIONS:
     best_performance = 0.0
 
     cmd = CC + CFLAGS + FILES + EXTRAFLAGS + ["-DL=512"]
 
-    compilation_result = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
+    compilation_result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     if compilation_result.stderr:
+        print(files)
+        print(compilation_result.stdout)
         print(compilation_result.stderr)
 
     duration = 5 * 60
