@@ -3,9 +3,10 @@
 #include <math.h>
 #include <stdlib.h>
 
-static float exp_table[32];
+static
 
-static void calculate_exp_table(const float temp) {
+    static void
+    calculate_exp_table(const float temp) {
   exp_table[(-8) + 8] = expf(-8 / temp);
   exp_table[(-4) + 8] = expf(-4 / temp);
   exp_table[(-2) + 8] = expf(-2 / temp);
@@ -20,8 +21,16 @@ static float optimized_exp(int x) { return exp_table[x + 8]; }
 
 void update(const float temp, int grid[L][L]) {
 
+  float exp_table[32];
+
   // Precalculate values
-  calculate_exp_table(temp);
+  exp_table[(-8) + 8] = expf(-8 / temp);
+  exp_table[(-4) + 8] = expf(-4 / temp);
+  exp_table[(-2) + 8] = expf(-2 / temp);
+  exp_table[(0) + 8] = expf(0 / temp);
+  exp_table[(2) + 8] = expf(2 / temp);
+  exp_table[(4) + 8] = expf(4 / temp);
+  exp_table[(8) + 8] = expf(8 / temp);
 
   // typewriter update
   for (unsigned int i = 0; i < L; ++i) {
@@ -43,7 +52,7 @@ void update(const float temp, int grid[L][L]) {
 
       int delta_E = h_after - h_before;
       float p = rand() / (float)RAND_MAX;
-      if (delta_E <= 0 || p <= optimized_exp(-delta_E + 8)) {
+      if (delta_E <= 0 || p <= exp_table[-delta_E + 8]) {
         grid[i][j] = spin_new;
       }
     }
