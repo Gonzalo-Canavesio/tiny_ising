@@ -18,8 +18,8 @@ void update(const float temp, int grid[L][L]) {
     exp_table[(8)+8] = expf(8 / temp);
 
   // typewriter update
-  for (unsigned int j = 0; j < L; ++j) {
-    for (unsigned int i = 0; i < L; ++i) {
+  for (unsigned int i = 0; i < L; ++i) {
+    for (unsigned int j = 0; j < L; ++j) {
       int spin_old = grid[i][j];
       int spin_new = (-1) * spin_old;
 
