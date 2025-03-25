@@ -1,4 +1,4 @@
-CC=gcc
+CC=clang
 CFLAGS=-std=c11 -Wall -Wextra -O3
 EXTRAFLAGS=-lgomp -lm
 GL_LDFLAGS=-lGL -lglfw
