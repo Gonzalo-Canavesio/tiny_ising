@@ -1,5 +1,6 @@
 #include "ising.h"
 
+#include <math.h>
 #include <stdlib.h>
 
 static float exp_table[32];
