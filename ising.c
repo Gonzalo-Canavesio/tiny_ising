@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int prev[L], next[L];
+static int prev[L], next[L];
 
 void init_prev_next() {
   for (int i = 0; i < L; ++i) {
