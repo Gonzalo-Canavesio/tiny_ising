@@ -5,7 +5,7 @@
 
 static float exp_table[32];
 
-void static calculate_exp_table(const float temp) {
+static void calculate_exp_table(const float temp) {
   exp_table[(-8) + 8] = expf(-8 / temp);
   exp_table[(-4) + 8] = expf(-4 / temp);
   exp_table[(-2) + 8] = expf(-2 / temp);
