@@ -5,7 +5,7 @@
 #endif
 
 #ifndef TEMP_INITIAL
-#define TEMP_INITIAL 1.73 // initial temperature
+#define TEMP_INITIAL 1.5 // initial temperature
 #endif
 
 #ifndef TEMP_FINAL
