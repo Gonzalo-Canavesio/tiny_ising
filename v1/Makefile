@@ -16,4 +16,3 @@ clean:
 	rm -f $(TARGETS) *.o
 
 .PHONY: clean all
-
