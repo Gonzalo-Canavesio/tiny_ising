@@ -17,7 +17,7 @@
 #endif
 
 #ifndef TRAN
-#define TRAN 8 // equilibration time
+#define TRAN 4 // equilibration time
 #endif
 
 #ifndef TMAX
@@ -25,5 +25,5 @@
 #endif
 
 #ifndef DELTA_T
-#define DELTA_T 8 // sampling period for energy and magnetization
+#define DELTA_T 4 // sampling period for energy and magnetization
 #endif
