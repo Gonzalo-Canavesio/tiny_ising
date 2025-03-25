@@ -32,4 +32,9 @@ Luego de hacer unas pruebas, clang superó a gcc y el mejor rendimiento fue dado
 
 Ahora vamos a probar el rendimiento que brinda el compilador de intel y cuales son las mejores flags para utilizar.
 
-Luego de un par de pruebas, descubrí que este compilador me da mejor rendimiento que clang, en este caso utilizando las flags
+Luego de un par de pruebas, descubrí que este compilador me da mejor rendimiento que clang, en este caso utilizando la flag -fast.
+
+### Versión 6
+
+Vamos a optimizar los tipos utilizados
+
