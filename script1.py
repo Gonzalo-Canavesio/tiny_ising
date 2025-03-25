@@ -4,8 +4,6 @@ from time import time
 CC = ["gcc-14"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
 EXTRAFLAGS = ["-lgomp", "-lm"]
-FILES = ["ising.c", "tiny_ising.c"]
-
 FILES_VERSIONS = [
     ["v0/ising.c", "v0/tiny_ising.c"],
     ["v1/ising.c", "v1/tiny_ising.c"],
@@ -15,7 +13,7 @@ FILES_VERSIONS = [
 for files in FILES_VERSIONS:
     best_performance = 0.0
 
-    cmd = CC + CFLAGS + FILES + EXTRAFLAGS + ["-DL=512"]
+    cmd = CC + CFLAGS + files + EXTRAFLAGS + ["-DL=512"]
 
     compilation_result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     if compilation_result.stderr:
