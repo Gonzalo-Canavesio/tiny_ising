@@ -9,7 +9,7 @@ TARGETS=tiny_ising
 # Rules
 all: $(TARGETS)
 
-tiny_ising: tiny_ising.o ising.o
+tiny_ising: tiny_ising.o ising.o xoshiro256plus.o
 	$(CC) $(CFLAGS) -o $@ $^ $(EXTRAFLAGS)
 
 clean:
