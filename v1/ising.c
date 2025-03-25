@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 static float exp_table[32];
-static float last_temp = -1.0;
+
 
 static void init_exp_table(float temp) {
   exp_table[(-8) + 8] = expf(-8 / temp);
@@ -17,6 +17,8 @@ static void init_exp_table(float temp) {
 }
 
 void update(const float temp, int grid[L][L]) {
+
+  static float last_temp = -999.0;
 
   if (temp != last_temp) {
     init_exp_table(temp);
