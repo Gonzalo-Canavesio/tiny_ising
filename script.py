@@ -4,9 +4,9 @@ from time import time
 CC = ["gcc"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
 EXTRAFLAGS = ["-lgomp", "-lm"]
-FILES = ["ising.c", "tiny_ising.c"]
+FILES = ["ising.c", "tiny_ising.c", "xoshiro256plus.c"]
 
-PARAMS_LIST = [2,4,8,16,32,64,128,217, 256,384,512,1024,1031,2048,4096,8192]
+PARAMS_LIST = [64,256,384,512,1024,2048,4096,8192]
 
 for line_size in PARAMS_LIST:
 
