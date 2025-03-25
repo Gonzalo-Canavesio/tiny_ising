@@ -23,8 +23,8 @@ void update(const float temp, int grid[L][L]) {
   for (unsigned int block_i = 0; block_i < L; block_i += BLOCK_SIZE) {
     for (unsigned int block_j = 0; block_j < L; block_j += BLOCK_SIZE) {
       // Procesar cada bloque
-      for (unsigned int i = block_i; i < min(block_i + BLOCK_SIZE, L); ++i) {
-        for (unsigned int j = block_j; j < min(block_j + BLOCK_SIZE, L); ++j) {
+      for (unsigned int i = block_i; i < (block_i + BLOCK_SIZE < L ? block_i + BLOCK_SIZE : L); ++i) {
+        for (unsigned int j = block_j; j < (block_j + BLOCK_SIZE < L ? block_j + BLOCK_SIZE : L); ++j) {
           int spin_old = grid[i][j];
           int spin_new = (-1) * spin_old;
 
