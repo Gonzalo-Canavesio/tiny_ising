@@ -5,14 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int prev[L], next[L];
-
-void init_prev_next() {
-  for (int i = 0; i < L; ++i) {
-    prev[i] = (i - 1 + L) % L;
-    next[i] = (i + 1) % L;
-  }
-}
 
 void update(const float temp, int grid[L][L]) {
   float exp_table[32];
@@ -32,11 +24,10 @@ void update(const float temp, int grid[L][L]) {
       int spin_new = (-1) * spin_old;
 
       // computing h_before
-      int spin_neigh_n = grid[prev[i]][j];
-      int spin_neigh_e = grid[i][next[j]];
-      int spin_neigh_w = grid[i][prev[j]];
-      int spin_neigh_s = grid[next[i]][j];
-
+      int spin_neigh_n = grid[(i + L - 1) % L][j];
+      int spin_neigh_e = grid[i][(j + 1) % L];
+      int spin_neigh_w = grid[i][(j + L - 1) % L];
+      int spin_neigh_s = grid[(i + 1) % L][j];
       int h_before = -(spin_old * spin_neigh_n) - (spin_old * spin_neigh_e) -
                      (spin_old * spin_neigh_w) - (spin_old * spin_neigh_s);
 
