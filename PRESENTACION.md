@@ -32,6 +32,6 @@ Los dispositivos utilizados para hacer las pruebas son:
 
 El primer paso realizado fue optimizar el código. 
 
-- En la primera versión, precomputo los calculos de unos exponenciales que representaba el XX% del tiempo de computo del programa.
+- En la primera versión, precomputo los calculos de unos exponenciales que en la versión base representaba aproximadamente el 20% del tiempo de computo del programa.
 - En la segunda versión, cambio la función utilizada para calcular el random a xoshiro256+, que es más eficiente computacional y estadisticamente que la versión anterior, utilizando rand() de la stdlib.
 - 
