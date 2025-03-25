@@ -13,6 +13,7 @@
 #include "gl2d.h"
 #include "ising.h"
 #include "params.h"
+#include "splitmix64.h"
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
