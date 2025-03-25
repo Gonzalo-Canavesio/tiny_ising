@@ -11,13 +11,13 @@
 
 #include "ising.h"
 #include "params.h"
+#include "splitmix64.h"
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
 #include <math.h> // expf()
 #include <omp.h> // omp_get_wtime()
 #include <stdio.h> // printf()
-#include <stdlib.h> // rand()
 #include <time.h> // time()
 
 
@@ -124,8 +124,8 @@ int main(void)
     printf("# Data Acquiring Step: %i\n", DELTA_T);
     printf("# Number of Points: %i\n", NPOINTS);
 
-    // configure RNG
-    srand(SEED);
+    // Seed the generator
+    set_seed(SEED);
 
     // start timer
     double start = omp_get_wtime();

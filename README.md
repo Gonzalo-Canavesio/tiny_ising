@@ -4,18 +4,6 @@
 
 ### Versión 1.0.0
 
-- **Largo de lado**: 384
+Uso la versión dada por la catedra para comenzar las pruebas y experimentación, tomando medidas con distintos valores para L (largo de la cuadricula, que es de L*L casillas).
 
-### Versión 1.0.1
-
-- **Largo de lado**: Siempre tiene que ser potencia de 2
-
-#### Observaciones
-
-Si hacemos que el "largo de lado" sea potencia de 2, mejora bastante el rendimiento. 
-
-### Versión 2.0.0
-
-#### Observaciones
-
-Intenté hacer que se use 1 solo bit por cada spin (es decir, 1 byte tenia 8 spines), salió todo mal, el rendimiento bajó a la mitad. Probablemente se debió al overhead que agregaba el tener que calcular la posición y obtener el bit correcto.
+Luego de esta prueba voy a seleccionar cuales van a ser los valores de L que usaré para las mediciones y comparaciones.
