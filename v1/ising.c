@@ -3,11 +3,9 @@
 #include <math.h>
 #include <stdlib.h>
 
-void update(const float temp, int grid[L][L]) {
+static float exp_table[32];
 
-  float exp_table[32];
-
-  // Precalculate values
+static void init_exp_table(float temp) {
   exp_table[(-8) + 8] = expf(-8 / temp);
   exp_table[(-4) + 8] = expf(-4 / temp);
   exp_table[(-2) + 8] = expf(-2 / temp);
@@ -15,6 +13,11 @@ void update(const float temp, int grid[L][L]) {
   exp_table[(2) + 8] = expf(2 / temp);
   exp_table[(4) + 8] = expf(4 / temp);
   exp_table[(8) + 8] = expf(8 / temp);
+}
+
+void update(const float temp, int grid[L][L]) {
+
+  init_exp_table(temp);
 
   // typewriter update
   for (unsigned int i = 0; i < L; ++i) {
