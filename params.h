@@ -17,13 +17,13 @@
 #endif
 
 #ifndef TRAN
-#define TRAN 4 // equilibration time
+#define TRAN 5 // equilibration time
 #endif
 
 #ifndef TMAX
-#define TMAX 24 // measurement time
+#define TMAX 25 // measurement time
 #endif
 
 #ifndef DELTA_T
-#define DELTA_T 4 // sampling period for energy and magnetization
+#define DELTA_T 5 // sampling period for energy and magnetization
 #endif
