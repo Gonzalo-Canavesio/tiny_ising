@@ -26,7 +26,6 @@ void update(const float temp, int grid[L][L])
 
             int delta_E = h_after - h_before;
             float p = random();
-            printf("%f\n", -delta_E / temp);
             if (delta_E <= 0 || p <= expf(-delta_E / temp)) {
                 grid[i][j] = spin_new;
             }
