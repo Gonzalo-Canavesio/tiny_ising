@@ -15,3 +15,6 @@ Luego de la versión 1 seleccione los mejores parametros para hacer las pruebas 
 Acá reemplacé el uso de rand() de la stdlib por xoshiro256+, el cual uso para generar números entre 0.0 y 1.0 y obtener una probabilidad (aleatoria) que se utiliza en uno de los pasos del algoritmo.
 
 ### Versión 3
+
+Vamos a comparar el rendimiento con distintas flags de compilación (O1,O2,O3,Ofast,Os) para verificar cual es la más rápida.
+
