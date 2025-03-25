@@ -7,48 +7,38 @@
 
 
 void update(const float temp, int grid[L][L]) {
-  float exp_table[32];
-  exp_table[(-8) + 8] = expf(-8 / temp);
-  exp_table[(-4) + 8] = expf(-4 / temp);
-  exp_table[(-2) + 8] = expf(-2 / temp);
-  exp_table[(0) + 8] = expf(0 / temp);
-  exp_table[(2) + 8] = expf(2 / temp);
-  exp_table[(4) + 8] = expf(4 / temp);
-  exp_table[(8) + 8] = expf(8 / temp);
+    float exp_table[32];
 
-  // Tamaño del bloque (ajustable)
-  const unsigned int BLOCK_SIZE = 8;
+    exp_table[(-8)+8] = expf(-8 / temp);
+    exp_table[(-4)+8] = expf(-4 / temp);
+    exp_table[(-2)+8] = expf(-2 / temp);
+    exp_table[(0)+8] = expf(0 / temp);
+    exp_table[(2)+8] = expf(2 / temp);
+    exp_table[(4)+8] = expf(4 / temp);
+    exp_table[(8)+8] = expf(8 / temp);
 
-  // Iteración por bloques
-  for (unsigned int block_i = 0; block_i < L; block_i += BLOCK_SIZE) {
-    for (unsigned int block_j = 0; block_j < L; block_j += BLOCK_SIZE) {
-      // Procesar cada bloque
-      for (unsigned int i = block_i; i < (block_i + BLOCK_SIZE < L ? block_i + BLOCK_SIZE : L); ++i) {
-        for (unsigned int j = block_j; j < (block_j + BLOCK_SIZE < L ? block_j + BLOCK_SIZE : L); ++j) {
-          int spin_old = grid[i][j];
-          int spin_new = (-1) * spin_old;
+  // typewriter update
+  for (unsigned int i = 0; i < L; ++i) {
+    for (unsigned int j = 0; j < L; ++j) {
+      int spin_old = grid[i][j];
+      int spin_new = (-1) * spin_old;
 
-          // Computar vecinos
-          int spin_neigh_n = grid[(i + L - 1) % L][j];
-          int spin_neigh_e = grid[i][(j + 1) % L];
-          int spin_neigh_w = grid[i][(j + L - 1) % L];
-          int spin_neigh_s = grid[(i + 1) % L][j];
+      // computing h_before
+      int spin_neigh_n = grid[(i + L - 1) % L][j];
+      int spin_neigh_e = grid[i][(j + 1) % L];
+      int spin_neigh_w = grid[i][(j + L - 1) % L];
+      int spin_neigh_s = grid[(i + 1) % L][j];
+      int h_before = -(spin_old * spin_neigh_n) - (spin_old * spin_neigh_e) -
+                     (spin_old * spin_neigh_w) - (spin_old * spin_neigh_s);
 
-          // Calcular cambio de energía
-          int h_before = -(spin_old * spin_neigh_n) -
-                         (spin_old * spin_neigh_e) - (spin_old * spin_neigh_w) -
-                         (spin_old * spin_neigh_s);
-          int h_after = -(spin_new * spin_neigh_n) - (spin_new * spin_neigh_e) -
-                        (spin_new * spin_neigh_w) - (spin_new * spin_neigh_s);
+      // h after taking new spin
+      int h_after = -(spin_new * spin_neigh_n) - (spin_new * spin_neigh_e) -
+                    (spin_new * spin_neigh_w) - (spin_new * spin_neigh_s);
 
-          int delta_E = h_after - h_before;
-          float p = random();
-
-          // Decidir si cambiar el spin
-          if (delta_E <= 0 || p <= exp_table[-delta_E + 8]) {
-            grid[i][j] = spin_new;
-          }
-        }
+      int delta_E = h_after - h_before;
+      float p = random();
+      if (delta_E <= 0 || p <= exp_table[-delta_E+8]) {
+        grid[i][j] = spin_new;
       }
     }
   }
