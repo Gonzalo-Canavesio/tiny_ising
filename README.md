@@ -36,5 +36,6 @@ Luego de un par de pruebas, descubrí que este compilador me da mejor rendimient
 
 ### Versión 6
 
-Vamos a optimizar los tipos utilizados
+Vamos a optimizar los tipos de datos utilizados:
+
 
