@@ -1,19 +1,22 @@
 import subprocess
+import os
 from time import time
 
 CC = ["gcc-14"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
 EXTRAFLAGS = ["-lomp", "-lm"]
-FILES_VERSIONS = [
-    ["v0/ising.c", "v0/tiny_ising.c"],
-    ["v1/ising.c", "v1/tiny_ising.c"],
-    ["v2/ising.c", "v2/tiny_ising.c", "v2/xoshiro256plus.c"],
-]
+FILES = ["ising.c", "tiny_ising.c"]
 
-for files in FILES_VERSIONS:
+VERSIONS = ["v0", "v1", "v2"]
+
+for v in VERSIONS:
     best_performance = 0.0
 
-    cmd = CC + CFLAGS + files + EXTRAFLAGS + ["-DL=512"]
+    os.chdir(v)
+
+    xoshiro_file = ["xoshiro256plus.c"] if v == "v2" else []
+
+    cmd = CC + CFLAGS + FILES + xoshiro_file + EXTRAFLAGS + ["-DL=512"]
 
     compilation_result = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
     if compilation_result.stderr:
@@ -31,5 +34,7 @@ for files in FILES_VERSIONS:
                     best_performance, float(line.replace("# Spins/ms:", ""))
                 )
 
-    print(f"Version: {files[0]}")
+    print(f"Version: {v}")
     print(f"Spins/ms: {best_performance}")
+
+    os.chdir("..")
