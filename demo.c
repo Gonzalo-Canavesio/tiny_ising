@@ -111,7 +111,7 @@ int main(void) {
 
   for (size_t i = 0; i < 20; i++)
   {
-    printf("%lf\n", random_probability());
+    printf("%lf\n", random());
   }
   
 
