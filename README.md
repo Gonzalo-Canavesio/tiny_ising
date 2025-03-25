@@ -16,5 +16,9 @@ Acá reemplacé el uso de rand() de la stdlib por xoshiro256+, el cual uso para 
 
 ### Versión 3
 
-Vamos a comparar el rendimiento con distintas flags de compilación (O1,O2,O3,Ofast,Os) para verificar cual es la más rápida.
+Vamos a comparar el rendimiento con distintas flags de compilación (O1,O2,O3,Ofast,Os) utilizando GCC, para verificar cual es la más rápida.
+
+Quise agregar la flag -march=native para habilitar todos los subconjuntos de instrucciones que son compatibles con la máquina local, pero en la netbook me dió un peor rendimiento usando esa flag.
+
+Luego 
 
