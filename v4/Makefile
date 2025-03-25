@@ -1,6 +1,6 @@
-CC=icx
-CFLAGS=-std=c11 -Wall -Wextra -xHost
-EXTRAFLAGS=-qopenmp -lm
+CC=clang
+CFLAGS=-std=c11 -Wall -Wextra -Ofast -march=native
+EXTRAFLAGS=-lgomp -lm
 GL_LDFLAGS=-lGL -lglfw
 
 # Files

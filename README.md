@@ -22,7 +22,12 @@ Luego de varias pruebas, llegué a la conclusión que -Ofast es la flag que mejo
 
 Quise agregar la flag -march=native para habilitar todos los subconjuntos de instrucciones que son compatibles con la máquina local, pero en la netbook me dió un peor rendimiento usando esa flag.
 
-#### Versión 4
+### Versión 4
 
 Ahora vamos a probar el rendimiento que brinda clang, con sus distintas optimizaciones.
 
+Luego de hacer unas pruebas, el mejor rendimiento fue dado por -Ofast, junto con la flag -march=native para habilitar todos los subconjuntos de instrucciones que son compatibles con la máquina local.
+
+### Versión 5
+
+Ahora vamos a probar el rendimiento que brinda el compilador de intel.
