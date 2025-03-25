@@ -16,6 +16,7 @@
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
+#include <omp.h>    // omp_get_wtime()
 #include <stdio.h>  // printf()
 #include <stdlib.h> // rand()
 #include <string.h>
