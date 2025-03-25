@@ -21,7 +21,7 @@
 #endif
 
 #ifndef TMAX
-#define TMAX 25 // measurement time
+#define TMAX 24 // measurement time
 #endif
 
 #ifndef DELTA_T
