@@ -2,7 +2,7 @@ import subprocess
 from time import time
 
 CC = ["gcc"]
-CFLAGS = ["-std=c99", "-Wall", "-Wextra"]
+CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
 EXTRAFLAGS = ["-lgomp", "-lm"]
 FILES = ["ising.c", "tiny_ising.c"]
 
