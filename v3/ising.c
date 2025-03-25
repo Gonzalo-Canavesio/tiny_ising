@@ -57,7 +57,7 @@ void update(const float temp, int_least8_t grid[L][L]) {
 
 
 double calculate(int_least8_t grid[L][L], int *M_max) {
-  int_least8_t E = 0;
+  int E = 0;
   for (int_fast16_t i = 0; i < L; ++i) {
     for (int_fast16_t j = 0; j < L; ++j) {
       int_least8_t spin = grid[i][j];
