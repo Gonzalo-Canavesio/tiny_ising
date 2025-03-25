@@ -25,12 +25,9 @@ void update(const float temp, int grid[L][L])
             int h_after = -(spin_new * spin_neigh_n) - (spin_new * spin_neigh_e) - (spin_new * spin_neigh_w) - (spin_new * spin_neigh_s);
 
             int delta_E = h_after - h_before;
+            print("%d, %f\n", -delta_E,temp);
             float p = random();
-            float x = -delta_E / temp;
-            x = 1.0f + x / 1024.0f;
-            x *= x; x *= x; x *= x;
-            x *= x; x *= x; x *= x;
-            if (delta_E <= 0 || p <= x) {
+            if (delta_E <= 0 || p <= expf(-delta_E / temp)) {
                 grid[i][j] = spin_new;
             }
         }
