@@ -13,7 +13,7 @@
 #include "gl2d.h"
 #include "ising.h"
 #include "params.h"
-#include "splitmix64.h"
+#include "xoshiro256plus.h"
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
@@ -107,7 +107,7 @@ int main(void) {
   printf("# Measurement Time: %i\n", TMAX);
 
   // Seed the generator
-  set_seed(SEED);
+  seed(SEED);
 
   for (size_t i = 0; i < 20; i++)
   {

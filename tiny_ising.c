@@ -11,7 +11,7 @@
 
 #include "ising.h"
 #include "params.h"
-#include "splitmix64.h"
+#include "xoshiro256plus.h"
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
@@ -129,7 +129,7 @@ int main(void) {
   printf("# Number of Points: %i\n", NPOINTS);
 
   // Seed the generator
-  set_seed(SEED);
+  seed(SEED);
 
   // start timer
   double start = omp_get_wtime();

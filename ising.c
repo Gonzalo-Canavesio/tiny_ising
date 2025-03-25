@@ -1,5 +1,5 @@
 #include "ising.h"
-#include "splitmix64.h"
+#include "xoshiro256plus.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -24,7 +24,7 @@ void update(const float temp, int grid[L][L])
             int h_after = -(spin_new * spin_neigh_n) - (spin_new * spin_neigh_e) - (spin_new * spin_neigh_w) - (spin_new * spin_neigh_s);
 
             int delta_E = h_after - h_before;
-            float p = random_probability();
+            float p = random();
             if (delta_E <= 0 || p <= expf(-delta_E / temp)) {
                 grid[i][j] = spin_new;
             }
