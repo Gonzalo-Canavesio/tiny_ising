@@ -29,6 +29,7 @@ void update(const float temp, int grid[L][L])
             float x = -delta_E / temp;
             x = 1.0f + x / 1024.0f;
             x *= x; x *= x; x *= x;
+            x *= x; x *= x; x *= x;
             if (delta_E <= 0 || p <= x) {
                 grid[i][j] = spin_new;
             }
