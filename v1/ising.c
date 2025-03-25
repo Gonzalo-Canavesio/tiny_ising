@@ -5,7 +5,6 @@
 
 static float exp_table[32];
 
-
 static void init_exp_table(float temp) {
   exp_table[(-8) + 8] = expf(-8 / temp);
   exp_table[(-4) + 8] = expf(-4 / temp);
@@ -18,6 +17,7 @@ static void init_exp_table(float temp) {
 
 void update(const float temp, int grid[L][L]) {
 
+  // Only initialized on first call
   static float last_temp = -999.0;
 
   if (temp != last_temp) {
