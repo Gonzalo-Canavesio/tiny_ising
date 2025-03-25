@@ -1,7 +1,7 @@
 import subprocess
 from time import time
 
-CC = ["clang"]
+CC = ["icx"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra", "-Ofast"]
 EXTRAFLAGS = ["-qopenmp", "-lm"]
 FILES = ["ising.c", "tiny_ising.c", "xoshiro256plus.c"]
