@@ -38,7 +38,7 @@ void update(const float temp, int grid[L][L]) {
       int delta_E = h_after - h_before;
       float p = random();
       if (delta_E <= 0 || p <= exp_table[-delta_E+8]) {
-        grid[i][j] = spin_new;
+        grid[j][i] = spin_new;
       }
     }
   }
