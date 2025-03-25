@@ -5,7 +5,7 @@
 #endif
 
 #ifndef TEMP_INITIAL
-#define TEMP_INITIAL 1.5 // initial temperature
+#define TEMP_INITIAL 1.73 // initial temperature
 #endif
 
 #ifndef TEMP_FINAL
@@ -17,13 +17,13 @@
 #endif
 
 #ifndef TRAN
-#define TRAN 5 // equilibration time
+#define TRAN 8 // equilibration time
 #endif
 
 #ifndef TMAX
-#define TMAX 25 // measurement time
+#define TMAX 32 // measurement time
 #endif
 
 #ifndef DELTA_T
-#define DELTA_T 5 // sampling period for energy and magnetization
+#define DELTA_T 8 // sampling period for energy and magnetization
 #endif
