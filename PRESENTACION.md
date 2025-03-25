@@ -32,6 +32,10 @@ Los dispositivos utilizados para hacer las pruebas son:
 
 El primer paso realizado fue optimizar el código. 
 
-- En la primera versión precomputo los calculos de unos exponenciales que en la versión base representaba aproximadamente entre el 20% y el 30% del tiempo de computo del programa.
-- En la segunda versión se cambia la función utilizada para calcular el random a xoshiro256+, ya que el calculo de randoms representaba aproximadamente entre el 20% y el 30% del tiempo de computo del programa. xoshiro256+ es más eficiente computacional y estadisticamente que rand() de la stdlib, que era lo que estabamos utilizando.
-- En la tercera versión se actualizan los tipos de datos de los bucles para ser más eficientes en espacio, pasando de usar int (4 bytes) a int8_t 
+- En la primera versión se hace precomputo de unos exponenciales necesarios en el contexto del problema, lo que en la versión base representaba aproximadamente entre el 20% y el 30% del tiempo de computo del programa.
+- En la segunda versión se cambia la función utilizada para calcular el random a xoshiro256+, ya que el calculo de randoms representaba aproximadamente entre el 20% y el 30% del tiempo de computo del programa. xoshiro256+ es más eficiente computacional y estadisticamente que rand() de la stdlib, que era lo que estabamos utilizando en la versión anterior.
+
+Se realizaron pruebas con un tamaño L=512 (Largo del lado de la cuadrilla), usando el compilador GCC versión 14.2.0
+Los resultados obtenidos son los siguientes:
+
+

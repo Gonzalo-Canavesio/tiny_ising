@@ -1,7 +1,7 @@
 import subprocess
 from time import time
 
-CC = ["gcc"]
+CC = ["gcc-14"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
 EXTRAFLAGS = ["-lomp", "-lm"]
 FILES_VERSIONS = [
