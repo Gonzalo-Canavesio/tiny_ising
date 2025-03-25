@@ -3,22 +3,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-static
-
-    static void
-    calculate_exp_table(const float temp) {
-  exp_table[(-8) + 8] = expf(-8 / temp);
-  exp_table[(-4) + 8] = expf(-4 / temp);
-  exp_table[(-2) + 8] = expf(-2 / temp);
-  exp_table[(0) + 8] = expf(0 / temp);
-  exp_table[(2) + 8] = expf(2 / temp);
-  exp_table[(4) + 8] = expf(4 / temp);
-  exp_table[(8) + 8] = expf(8 / temp);
-}
-
-static float optimized_exp(int x) { return exp_table[x + 8]; }
-
-
 void update(const float temp, int grid[L][L]) {
 
   float exp_table[32];
