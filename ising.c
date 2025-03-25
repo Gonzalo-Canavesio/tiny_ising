@@ -17,7 +17,7 @@ void update(const float temp, int grid[L][L]) {
   exp_table[(8) + 8] = expf(8 / temp);
 
   // Tamaño del bloque (ajustable)
-  const int BLOCK_SIZE = 8;
+  const unsigned int BLOCK_SIZE = 8;
 
   // Iteración por bloques
   for (unsigned int block_i = 0; block_i < L; block_i += BLOCK_SIZE) {
