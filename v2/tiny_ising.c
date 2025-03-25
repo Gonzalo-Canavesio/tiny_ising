@@ -15,9 +15,9 @@
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
-#include <math.h>   // expf()
 #include <omp.h>    // omp_get_wtime()
 #include <stdio.h>  // printf()
+#include <stdlib.h> // abs()
 #include <time.h>   // time()
 
 

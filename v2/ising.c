@@ -1,7 +1,6 @@
 #include "ising.h"
 #include "xoshiro256plus.h"
 
-#include <math.h>
 #include <stdlib.h>
 
 static float exp_table[32];
