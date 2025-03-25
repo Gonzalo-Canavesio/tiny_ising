@@ -26,9 +26,10 @@ void update(const float temp, int grid[L][L])
 
             int delta_E = h_after - h_before;
             float p = random();
-            union { float f; uint32_t i; } u;
-            u.i = (uint32_t)(12102203.0f * (-delta_E / temp) + 1065353216.0f);
-            if (delta_E <= 0 || p <= u.f) {
+            float x = -delta_E / temp;
+            x = 1.0f + x / 1024.0f;
+            x *= x; x *= x; x *= x;
+            if (delta_E <= 0 || p <= x) {
                 grid[i][j] = spin_new;
             }
         }
