@@ -11,14 +11,13 @@
 
 #include "ising.h"
 #include "params.h"
-#include "xoshiro256plus.h"
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
 #include <math.h>   // expf()
 #include <omp.h>    // omp_get_wtime()
 #include <stdio.h>  // printf()
-#include <stdlib.h> // abs()
+#include <stdlib.h> // rand()
 #include <time.h>   // time()
 
 
@@ -98,15 +97,17 @@ static void init(int grid[L][L]) {
 
 int main(void) {
   // parameter checking
-  assert(TEMP_DELTA != 0 && "Invalid temperature step");
-  assert((((TEMP_DELTA > 0) && (TEMP_INITIAL <= TEMP_FINAL)) ||
-          ((TEMP_DELTA < 0) && (TEMP_INITIAL >= TEMP_FINAL))) &&
-         "Invalid temperature range+step");
-  assert(TMAX % DELTA_T == 0 &&
-         "Measurements must be equidistant"); // take equidistant calculate()
-  assert((L * L / 2) * 4ULL < UINT_MAX &&
-         "L too large for uint indices"); // max energy, that is all spins are
-                                          // the same, fits into a ulong
+  static_assert(TEMP_DELTA != 0, "Invalid temperature step");
+  static_assert(((TEMP_DELTA > 0) && (TEMP_INITIAL <= TEMP_FINAL)) ||
+                    ((TEMP_DELTA < 0) && (TEMP_INITIAL >= TEMP_FINAL)),
+                "Invalid temperature range+step");
+  static_assert(
+      TMAX % DELTA_T == 0,
+      "Measurements must be equidistant"); // take equidistant calculate()
+  static_assert(
+      (L * L / 2) * 4ULL < UINT_MAX,
+      "L too large for uint indices"); // max energy, that is all spins are the
+                                       // same, fits into a ulong
 
   // the stats
   struct statpoint stat[NPOINTS];
@@ -126,8 +127,8 @@ int main(void) {
   printf("# Data Acquiring Step: %i\n", DELTA_T);
   printf("# Number of Points: %i\n", NPOINTS);
 
-  // Seed the generator
-  seed(SEED);
+  // configure RNG
+  srand(SEED);
 
   // start timer
   double start = omp_get_wtime();

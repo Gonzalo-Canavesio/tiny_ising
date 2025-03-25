@@ -34,42 +34,40 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
 
 static inline uint64_t rotl(const uint64_t x, int k) {
-	return (x << k) | (x >> (64 - k));
+  return (x << k) | (x >> (64 - k));
 }
 
 
 static uint64_t s[4];
 
 uint64_t next(void) {
-	const uint64_t result = s[0] + s[3];
+  const uint64_t result = s[0] + s[3];
 
-	const uint64_t t = s[1] << 17;
+  const uint64_t t = s[1] << 17;
 
-	s[2] ^= s[0];
-	s[3] ^= s[1];
-	s[1] ^= s[2];
-	s[0] ^= s[3];
+  s[2] ^= s[0];
+  s[3] ^= s[1];
+  s[1] ^= s[2];
+  s[0] ^= s[3];
 
-	s[2] ^= t;
+  s[2] ^= t;
 
-	s[3] = rotl(s[3], 45);
+  s[3] = rotl(s[3], 45);
 
-	return result;
+  return result;
 }
 
 // Function to generate a floating-point number in [0,1)
-double random(void) {
-    return (next() >> 11) * 0x1.0p-53;
-}
+double optimized_random_probability(void) { return (next() >> 11) * 0x1.0p-53; }
 
 void seed(uint64_t seed) {
-    for (int i = 0; i < 4; i++) {
-        seed += 0x9e3779b97f4a7c15;
-        uint64_t z = seed;
-        z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9;
-        z = (z ^ (z >> 27)) * 0x94d049bb133111eb;
-        s[i] = z ^ (z >> 31);
-    }
+  for (int i = 0; i < 4; i++) {
+    seed += 0x9e3779b97f4a7c15;
+    uint64_t z = seed;
+    z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9;
+    z = (z ^ (z >> 27)) * 0x94d049bb133111eb;
+    s[i] = z ^ (z >> 31);
+  }
 }
 
 // /* This is the jump function for the generator. It is equivalent
@@ -77,7 +75,8 @@ void seed(uint64_t seed) {
 //    non-overlapping subsequences for parallel computations. */
 
 // void jump(void) {
-// 	static const uint64_t JUMP[] = { 0x180ec6d33cfd0aba, 0xd5a61266f0c9392c, 0xa9582618e03fc9aa, 0x39abdc4529b1661c };
+// 	static const uint64_t JUMP[] = { 0x180ec6d33cfd0aba, 0xd5a61266f0c9392c,
+// 0xa9582618e03fc9aa, 0x39abdc4529b1661c };
 
 // 	uint64_t s0 = 0;
 // 	uint64_t s1 = 0;
@@ -91,9 +90,9 @@ void seed(uint64_t seed) {
 // 				s2 ^= s[2];
 // 				s3 ^= s[3];
 // 			}
-// 			next();	
+// 			next();
 // 		}
-		
+
 // 	s[0] = s0;
 // 	s[1] = s1;
 // 	s[2] = s2;
@@ -107,7 +106,8 @@ void seed(uint64_t seed) {
 //    subsequences for parallel distributed computations. */
 
 // void long_jump(void) {
-// 	static const uint64_t LONG_JUMP[] = { 0x76e15d3efefdcbbf, 0xc5004e441c522fb3, 0x77710069854ee241, 0x39109bb02acbe635 };
+// 	static const uint64_t LONG_JUMP[] = { 0x76e15d3efefdcbbf,
+// 0xc5004e441c522fb3, 0x77710069854ee241, 0x39109bb02acbe635 };
 
 // 	uint64_t s0 = 0;
 // 	uint64_t s1 = 0;
@@ -121,9 +121,9 @@ void seed(uint64_t seed) {
 // 				s2 ^= s[2];
 // 				s3 ^= s[3];
 // 			}
-// 			next();	
+// 			next();
 // 		}
-		
+
 // 	s[0] = s0;
 // 	s[1] = s1;
 // 	s[2] = s2;

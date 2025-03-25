@@ -1,6 +1,6 @@
 #include <stdint.h>
 
 
-double random(void);
+double optimized_random_probability(void);
 
 void seed(uint64_t seed);
