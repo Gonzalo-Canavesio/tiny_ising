@@ -26,7 +26,7 @@
 // out vector size, it is +1 since we reach TEMP_
 #define NPOINTS (1 + (int)((TEMP_FINAL - TEMP_INITIAL) / TEMP_DELTA))
 #define N (L * L)   // system size
-#define SEED 0xC4FE //(time(NULL)) // random seed
+#define SEED (time(NULL)) // random seed
 
 // temperature, E, E^2, E^4, M, M^2, M^4
 struct statpoint {
