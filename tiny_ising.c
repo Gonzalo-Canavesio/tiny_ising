@@ -40,7 +40,7 @@ struct statpoint {
 };
 
 
-static void cycle(int grid[L][L], const double min, const double max,
+static void cycle(int_fast8_t grid[L][L], const double min, const double max,
                   const double step, const unsigned int calc_step,
                   struct statpoint stats[]) {
 
@@ -87,7 +87,7 @@ static void cycle(int grid[L][L], const double min, const double max,
 }
 
 
-static void init(int grid[L][L]) {
+static void init(int_fast8_t grid[L][L]) {
   for (unsigned int i = 0; i < L; ++i) {
     for (unsigned int j = 0; j < L; ++j) {
       grid[i][j] = 1;
@@ -133,7 +133,7 @@ int main(void) {
   double start = omp_get_wtime();
 
   // clear the grid
-  int grid[L][L] = {{0}};
+  int_fast8_t grid[L][L] = {{0}};
   init(grid);
 
   // temperature increasing cycle
