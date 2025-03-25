@@ -11,20 +11,21 @@
 
 #include "ising.h"
 #include "params.h"
-#include "wtime.h"
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
 #include <math.h> // expf()
+#include <omp.h> // omp_get_wtime()
 #include <stdio.h> // printf()
 #include <stdlib.h> // rand()
 #include <time.h> // time()
+
 
 // Internal definitions and functions
 // out vector size, it is +1 since we reach TEMP_
 #define NPOINTS (1 + (int)((TEMP_FINAL - TEMP_INITIAL) / TEMP_DELTA))
 #define N (L * L) // system size
-#define SEED (time(NULL)) // random seed
+#define SEED 0xC4FE //(time(NULL)) // random seed
 
 // temperature, E, E^2, E^4, M, M^2, M^4
 struct statpoint {
@@ -127,7 +128,7 @@ int main(void)
     srand(SEED);
 
     // start timer
-    double start = wtime();
+    double start = omp_get_wtime();
 
     // clear the grid
     int grid[L][L] = { { 0 } };
@@ -137,8 +138,9 @@ int main(void)
     cycle(grid, TEMP_INITIAL, TEMP_FINAL, TEMP_DELTA, DELTA_T, stat);
 
     // stop timer
-    double elapsed = wtime() - start;
+    double elapsed = omp_get_wtime() - start;
     printf("# Total Simulation Time (sec): %lf\n", elapsed);
+    printf("# Spins/ms: %lf\n", N/(elapsed*1000));
 
     printf("# Temp\tE\tE^2\tE^4\tM\tM^2\tM^4\n");
     for (unsigned int i = 0; i < NPOINTS; ++i) {
