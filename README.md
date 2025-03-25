@@ -26,8 +26,10 @@ Quise agregar la flag -march=native para habilitar todos los subconjuntos de ins
 
 Ahora vamos a probar el rendimiento que brinda clang, con sus distintas optimizaciones.
 
-Luego de hacer unas pruebas, el mejor rendimiento fue dado por -Ofast, junto con la flag -march=native para habilitar todos los subconjuntos de instrucciones que son compatibles con la máquina local.
+Luego de hacer unas pruebas, clang superó a gcc y el mejor rendimiento fue dado por -Ofast, junto con la flag -march=native para habilitar todos los subconjuntos de instrucciones que son compatibles con la máquina local.
 
 ### Versión 5
 
-Ahora vamos a probar el rendimiento que brinda el compilador de intel.
+Ahora vamos a probar el rendimiento que brinda el compilador de intel y cuales son las mejores flags para utilizar.
+
+Luego de un par de pruebas, descubrí que este compilador me da mejor rendimiento que clang, en este caso utilizando las flags
