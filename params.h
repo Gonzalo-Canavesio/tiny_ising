@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef L
-#define L 512 // linear system size
+#define L 512U // linear system size
 #endif
 
 #ifndef TEMP_INITIAL
