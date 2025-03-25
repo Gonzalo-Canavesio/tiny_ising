@@ -17,7 +17,12 @@ void update(const float temp, int grid[L][L]) {
     exp_table[(4)+8] = expf(4 / temp);
     exp_table[(8)+8] = expf(8 / temp);
 
+    int prev[L], next[L];
 
+    for (int i = 0; i < L; ++i) {
+        prev[i] = (i - 1 + L) % L;
+        next[i] = (i + 1) % L;
+    }
 
   // typewriter update
   for (unsigned int i = 0; i < L; ++i) {
@@ -26,10 +31,11 @@ void update(const float temp, int grid[L][L]) {
       int spin_new = (-1) * spin_old;
 
       // computing h_before
-      int spin_neigh_n = grid[(i + L - 1) % L][j];
-      int spin_neigh_e = grid[i][(j + 1) % L];
-      int spin_neigh_w = grid[i][(j + L - 1) % L];
-      int spin_neigh_s = grid[(i + 1) % L][j];
+      int spin_neigh_n = grid[prev[i]][j];
+      int spin_neigh_e = grid[i][next[j]];
+      int spin_neigh_w = grid[i][prev[j]];
+      int spin_neigh_s = grid[next[i]][j];
+      
       int h_before = -(spin_old * spin_neigh_n) - (spin_old * spin_neigh_e) -
                      (spin_old * spin_neigh_w) - (spin_old * spin_neigh_s);
 
