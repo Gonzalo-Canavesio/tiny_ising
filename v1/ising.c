@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 static float exp_table[32];
+static float last_temp = -1.0;
 
 static void init_exp_table(float temp) {
   exp_table[(-8) + 8] = expf(-8 / temp);
@@ -17,7 +18,10 @@ static void init_exp_table(float temp) {
 
 void update(const float temp, int grid[L][L]) {
 
-  init_exp_table(temp);
+  if (temp != last_temp) {
+    init_exp_table(temp);
+    last_temp = temp;
+  }
 
   // typewriter update
   for (unsigned int i = 0; i < L; ++i) {
