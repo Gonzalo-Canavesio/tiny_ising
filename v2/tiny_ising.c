@@ -11,13 +11,13 @@
 
 #include "ising.h"
 #include "params.h"
+#include "xoshiro256plus.h"
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
 #include <math.h>   // expf()
 #include <omp.h>    // omp_get_wtime()
 #include <stdio.h>  // printf()
-#include <stdlib.h> // rand()
 #include <time.h>   // time()
 
 
@@ -128,7 +128,7 @@ int main(void) {
   printf("# Number of Points: %i\n", NPOINTS);
 
   // configure RNG
-  srand(SEED);
+  seed(SEED);
 
   // start timer
   double start = omp_get_wtime();
