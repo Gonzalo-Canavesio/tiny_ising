@@ -24,10 +24,10 @@ void update(const float temp, int grid[L][L]) {
       int spin_new = (-1) * spin_old;
 
       // computing h_before
-      int spin_neigh_n = grid[(i + L - 1) % L][j];
-      int spin_neigh_e = grid[i][(j + 1) % L];
-      int spin_neigh_w = grid[i][(j + L - 1) % L];
-      int spin_neigh_s = grid[(i + 1) % L][j];
+      int spin_neigh_n = grid[j][(i + L - 1) % L];
+      int spin_neigh_e = grid[(j + 1) % L][i];
+      int spin_neigh_w = grid[(j + L - 1) % L][i];
+      int spin_neigh_s = grid[j][(i + 1) % L];
       int h_before = -(spin_old * spin_neigh_n) - (spin_old * spin_neigh_e) -
                      (spin_old * spin_neigh_w) - (spin_old * spin_neigh_s);
 
