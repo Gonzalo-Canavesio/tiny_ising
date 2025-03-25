@@ -132,6 +132,8 @@ int main(void) {
   // start timer
   double start = omp_get_wtime();
 
+  init_prev_next();
+
   // clear the grid
   int grid[L][L] = {{0}};
   init(grid);
