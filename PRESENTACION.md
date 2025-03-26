@@ -36,6 +36,10 @@ El primer paso realizado fue optimizar el código.
 - En la segunda versión se cambia la función utilizada para calcular el random a xoshiro256+, ya que el calculo de randoms representaba aproximadamente entre el 20% y el 30% del tiempo de computo del programa. xoshiro256+ es más eficiente computacional y estadisticamente que rand() de la stdlib, que era lo que estabamos utilizando en la versión anterior.
 
 Se realizaron pruebas con un tamaño L=256 y L=1024 (L es el largo del lado de la cuadrilla), usando el compilador GCC versión 14.2.0
-Los resultados obtenidos son los siguientes: (Mostrar gráfico de barras)
+Los resultados obtenidos son los siguientes: (Mostrar gráfico de barras y hablar un poco sobre los resultados)
 
-
+Una vez optimizado el código, pasamos a optimizar el compilador, para ello, vamos a probar distintos compiladores con las mejores flags de compilación que provea cada uno, priorizando siempre el time to solution (y que no se rompan los resultados con respecto a la versión no optimizada por el compilador). Esto requirió una busqueda de documentación, articulos y varias pruebas comparativas, llegando a la conclusión de que las mejores flags para el problema fueron:
+- GCC versión 14.2.0
+- Clang versión
+- ICX (Intel) versión
+- Compilador nvidia
