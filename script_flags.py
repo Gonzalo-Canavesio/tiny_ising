@@ -7,7 +7,7 @@ EXTRAFLAGS = ["-lgomp", "-lm"]
 FILES = ["v2/ising.c", "v2/tiny_ising.c", "v2/xoshiro256plus.c"]
 
 PARAMS_LIST = [256, 1024]
-O_LIST = ["-O1", "-O2", "-O3", "-Ofast", "-Os"]
+O_LIST = ["-O2", "-O3", "-Ofast", "-O2 -march=native", "-O3 -march=native", "-Ofast -march=native"]
 
 for line_size in PARAMS_LIST:
     for o in O_LIST:
