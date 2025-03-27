@@ -1,9 +1,9 @@
 import subprocess
 from time import time
 
-CC = ["clang"]
+CC = ["clang-19"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
-EXTRAFLAGS = ["-fopenmp", "-lm"]
+EXTRAFLAGS = ["-lomp", "-lm"]
 FILES = ["v2/ising.c", "v2/tiny_ising.c", "v2/xoshiro256plus.c"]
 
 PARAMS_LIST = [256, 1024]
