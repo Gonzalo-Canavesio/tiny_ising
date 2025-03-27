@@ -19,6 +19,7 @@
 #include <stdio.h>  // printf()
 #include <stdlib.h> // abs()
 #include <time.h>   // time()
+#include <sys/time.h>
 
 
 // Internal definitions and functions
