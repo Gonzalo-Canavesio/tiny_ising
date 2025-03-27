@@ -15,11 +15,11 @@
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
-#include <omp.h>
 #include <stdint.h>
 #include <stdio.h>  // printf()
 #include <stdlib.h> // abs()
 #include <time.h>   // time()
+#include <sys/time.h>
 
 
 // Internal definitions and functions
@@ -38,6 +38,21 @@ struct statpoint {
   double m2;
   double m4;
 };
+
+double omp_get_wtime(void) {
+#ifdef HAVE_CLOCK_GETTIME
+  struct timespec ts;
+#ifdef CLOCK_MONOTONIC
+  if (clock_gettime(CLOCK_MONOTONIC, &ts) < 0)
+#endif
+    clock_gettime(CLOCK_REALTIME, &ts);
+  return ts.tv_sec + ts.tv_nsec / 1e9;
+#else
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+  return tv.tv_sec + tv.tv_usec / 1e6;
+#endif
+}
 
 static void cycle(int grid[L][L], const double min, const double max,
                   const double step, const unsigned int calc_step,
