@@ -15,6 +15,7 @@
 
 #include <assert.h>
 #include <limits.h> // UINT_MAX
+#include <stdint.h>
 #include <stdio.h>  // printf()
 #include <stdlib.h> // abs()
 #include <time.h>   // time()
@@ -37,26 +38,20 @@ struct statpoint {
   double m4;
 };
 
-#ifdef __RDNA3__
-#define RTC_TICKS (1.0 / 100000000.0) /* 100MHz */
-#else
-#define RTC_TICKS (1.0 / 27000000.0) /* 27MHz */
-#endif
-
 double omp_get_wtime(void) {
-  uint64_t clock;
-#ifdef __RDNA3__
-  asm("s_sendmsg_rtn_b64 %0 0x83 ;Get REALTIME\n\t"
-      "s_waitcnt 0"
-      : "=r"(clock));
-#else
-  asm("s_memrealtime %0\n\t"
-      "s_waitcnt 0"
-      : "=r"(clock));
+#ifdef HAVE_CLOCK_GETTIME
+  struct timespec ts;
+#ifdef CLOCK_MONOTONIC
+  if (clock_gettime(CLOCK_MONOTONIC, &ts) < 0)
 #endif
-  return clock * RTC_TICKS;
+    clock_gettime(CLOCK_REALTIME, &ts);
+  return ts.tv_sec + ts.tv_nsec / 1e9;
+#else
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+  return tv.tv_sec + tv.tv_usec / 1e6;
+#endif
 }
-
 
 static void cycle(int grid[L][L], const double min, const double max,
                   const double step, const unsigned int calc_step,
