@@ -14,7 +14,7 @@ for line_size in PARAMS_LIST:
 
             best_performance = 0.0
 
-            cmd = CC + CFLAGS + FILES + EXTRAFLAGS + o.split() + [f"-DL={line_size}"]
+            cmd = CC + CFLAGS + o.split() + FILES + EXTRAFLAGS  + [f"-DL={line_size}"]
 
             compilation_result = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
             if compilation_result.stderr:
