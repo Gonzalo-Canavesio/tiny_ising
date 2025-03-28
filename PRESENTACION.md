@@ -47,8 +47,8 @@ Una vez optimizado el código, pasamos a optimizar el compilador, para ello, vam
 - GCC versión 14.2.0: -O2
   - La flag -march=native empeoró los resultados en todos los dispositivos.
   - Las flags -O2, -O3, -Ofast daban un desempeño similar entre ellas en la mayoria de los casos, se eligió la -O2 porque en los casos de tamaño grande (L=1024) superaba de manera clara a las otras dos flags al realizar pruebas en la cristibook.
-- Clang versión 19.1.7: -O3 -ffast-math
-  - La flag -march=native empeoró mucho los resultados en el server Atom.
+- Clang versión 19.1.7: -O3 -march=native
+  - La flag -ffast-math empeoró los resultados en el server Atom.
 - ICX (Intel) versión
 - Compilador nvidia (nvcc?)
 - Compilador AMD (aocc?)
