@@ -50,7 +50,7 @@ Una vez optimizado el código, pasamos a optimizar el compilador, para ello, vam
 - Clang versión 19.1.7: -O3 -march=native
   - La flag -ffast-math empeoró los resultados en el server Atom.
 - ICX (Intel oneAPI Compiler) versión 2023.2.0: -Ofast -march=native -ipo
-- AOCC (AMD clang) versión 16.0.3: 
+- AOCC (AMD clang) versión 16.0.3: -Ofast -march=native
 
 (En el gráfico, agregar comparación contra la versión base)
 
