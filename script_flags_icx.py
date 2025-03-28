@@ -7,14 +7,14 @@ EXTRAFLAGS = ["-lgomp", "-lm"]
 FILES = ["v2/ising.c", "v2/tiny_ising.c", "v2/xoshiro256plus.c"]
 
 PARAMS_LIST = [256, 1024]
-O_LIST = ["-O", "-O2", "-O3", "-Ofast", "-O2 -xHost", "-O3 -xHost", "-Ofast -xHost", "-fast"]
+O_LIST = ["-O", "-O2", "-O3", "-Ofast", "-O2 -march=native", "-O3 -march=native", "-Ofast -march=native", "-O2 -ipo", "-O3 -ipo", "-Ofast -ipo", "-O2 -march=native -ipo", "-O3 -march=native -ipo", "-Ofast -march=native -ipo",]
 
 for line_size in PARAMS_LIST:
     for o in O_LIST:
 
             best_performance = 0.0
 
-            cmd = CC + CFLAGS + o.split() + FILES + EXTRAFLAGS  + [f"-DL={line_size}"]
+            cmd = CC + CFLAGS + FILES + EXTRAFLAGS + o.split() + [f"-DL={line_size}"]
 
             compilation_result = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
             if compilation_result.stderr:

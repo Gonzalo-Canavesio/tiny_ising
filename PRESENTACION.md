@@ -49,7 +49,7 @@ Una vez optimizado el código, pasamos a optimizar el compilador, para ello, vam
   - Las flags -O2, -O3, -Ofast daban un desempeño similar entre ellas en la mayoria de los casos, se eligió la -O2 porque en los casos de tamaño grande (L=1024) superaba de manera clara a las otras dos flags al realizar pruebas en la cristibook.
 - Clang versión 19.1.7: -O3 -march=native
   - La flag -ffast-math empeoró los resultados en el server Atom.
-- ICX (Intel) versión
+- ICX (Intel oneAPI Compiler) versión 2023.2.0: 
 - Compilador nvidia (nvcc?)
 - Compilador AMD (aocc?)
 
