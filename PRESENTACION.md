@@ -44,9 +44,7 @@ Los resultados obtenidos son los siguientes: (Mostrar gráfico de barras y habla
 ## Parte 2
 
 Una vez optimizado el código, pasamos a optimizar el compilador, para ello, vamos a probar distintos compiladores con las mejores flags de compilación que provea cada uno, priorizando siempre el time to solution (y que no se rompan los resultados con respecto a la versión no optimizada por el compilador). Esto requirió una busqueda de documentación, articulos y varias pruebas comparativas, llegando a la conclusión de que las mejores flags para el problema fueron:
-- GCC versión 14.2.0: -O2
-  - La flag -march=native empeoró los resultados en todos los dispositivos.
-  - Las flags -O2, -O3, -Ofast daban un desempeño similar entre ellas en la mayoria de los casos, se eligió la -O2 porque en los casos de tamaño grande (L=1024) superaba de manera clara a las otras dos flags al realizar pruebas en la cristibook.
+- GCC versión 14.2.0: -O2 -march=native -funroll-loops -ffast-math -flto
 - Clang versión 19.1.7: -O3 -march=native
   - La flag -ffast-math empeoró los resultados en el server Atom.
 - ICX (Intel oneAPI Compiler) versión 2023.2.0: -Ofast -march=native -ipo
