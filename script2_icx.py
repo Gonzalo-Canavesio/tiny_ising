@@ -1,13 +1,13 @@
 import subprocess
 from time import time
 
-CC = ["gcc-14"]
+CC = ["icx"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
 EXTRAFLAGS = ["-lgomp", "-lm"]
 FILES = ["v2/ising.c", "v2/tiny_ising.c", "v2/xoshiro256plus.c"]
 
 PARAMS_LIST = [256, 384, 512, 1024, 4096, 8192]
-OPTIMIZATIONS = ["-O2", "-march=native", "-funroll-loops", "-ffast-math", "-flto"]
+OPTIMIZATIONS = ["-Ofast", "-march=native", "-ipo"]
 
 for line_size in PARAMS_LIST:
     best_performance = 0.0
