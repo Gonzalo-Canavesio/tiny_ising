@@ -29,6 +29,12 @@ Los dispositivos utilizados para hacer las pruebas son:
     - Cache L3: 256 MiB (compartida)
   - SO: Debian 13 (trixie)
   - Kernel: 6.12.12-amd64 x86_64
+  - Benchmarks:
+    - Memoria: 
+      - Copy: 30.2085 GB/s
+      - Scale: 30.4872 GB/s
+      - Add: 34.3369 GB/s
+      - Triad: 34.2021 GB/s
 
 ## Parte 1
 
