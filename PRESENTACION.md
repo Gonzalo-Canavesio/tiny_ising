@@ -12,6 +12,15 @@ Los dispositivos utilizados para hacer las pruebas son:
     - Cache L2: 4 MiB
   - SO: Linux Mint 22 (Wilma)
   - Kernel: 6.8.0-53-generic x86_64
+  - Benchmarks:
+    - Memoria: 
+      - Copy: 5.6917 GB/s
+      - Scale: 4.4986 GB/s
+      - Add: 5.6406 GB/s
+      - Triad: 5.6376 GB/s
+    - CPU:
+      - Doble float: 1367.3276 GFLOPS
+      - Simple float: 2847.5789 GFLOPS
 - PC Escritorio:
   - CPU: 12th Gen Intel(R) Core(TM) i5-12400F @ 2.5GHz
   - Memoria:
@@ -35,6 +44,9 @@ Los dispositivos utilizados para hacer las pruebas son:
       - Scale: 30.4872 GB/s
       - Add: 34.3369 GB/s
       - Triad: 34.2021 GB/s
+    - CPU:
+      - Doble float: 1367.3276 GFLOPS
+      - Simple float: 2847.5789 GFLOPS
 
 ## Parte 1
 
