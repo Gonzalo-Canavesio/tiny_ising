@@ -16,7 +16,7 @@ static void init_exp_table(float temp) {
   exp_table[(8) + 8] = expf(8 / temp);
 }
 
-void update(const float temp, int8_t grid[L][L]) {
+void update(const float temp, int8_t *grid[L][L]) {
 
   // Only initialized on first call
   static float last_temp = -999.0;
@@ -54,7 +54,7 @@ void update(const float temp, int8_t grid[L][L]) {
 }
 
 
-double calculate(int8_t grid[L][L], int *M_max) {
+double calculate(int8_t *grid[L][L], int *M_max) {
   int E = 0;
   for (unsigned int i = 0; i < L; ++i) {
     for (unsigned int j = 0; j < L; ++j) {

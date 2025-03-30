@@ -39,7 +39,7 @@ struct statpoint {
   double m4;
 };
 
-static void cycle(int8_t grid[L][L], const double min, const double max,
+static void cycle(int8_t *grid[L][L], const double min, const double max,
                   const double step, const unsigned int calc_step,
                   struct statpoint stats[]) {
 
@@ -51,18 +51,18 @@ static void cycle(int8_t grid[L][L], const double min, const double max,
 
     // equilibrium phase
     for (unsigned int j = 0; j < TRAN; ++j) {
-      update(temp, grid);
+      update(temp, *grid);
     }
 
     // measurement phase
     unsigned int measurements = 0;
     double e = 0.0, e2 = 0.0, e4 = 0.0, m = 0.0, m2 = 0.0, m4 = 0.0;
     for (unsigned int j = 0; j < TMAX; ++j) {
-      update(temp, grid);
+      update(temp, *grid);
       if (j % calc_step == 0) {
         double energy = 0.0, mag = 0.0;
         int M_max = 0;
-        energy = calculate(grid, &M_max);
+        energy = calculate(*grid, &M_max);
         mag = abs(M_max) / (float)N;
         e += energy;
         e2 += energy * energy;
@@ -86,7 +86,7 @@ static void cycle(int8_t grid[L][L], const double min, const double max,
 }
 
 
-static void init(int8_t grid[L][L]) {
+static void init(int8_t *grid[L][L]) {
   for (unsigned int i = 0; i < L; ++i) {
     for (unsigned int j = 0; j < L; ++j) {
       grid[i][j] = 1;
@@ -134,15 +134,15 @@ int main(void) {
   double start = omp_get_wtime();
 
   // clear the grid
-  int8_t grid[L][L] = calloc(L * L, sizeof(int8_t));
-  if (grid == NULL) {
+  int8_t *grid[L][L] = calloc(L * L, sizeof(int8_t));
+  if (*grid == NULL) {
     fprintf(stderr, "Error: Unable to allocate memory for grid\n");
     return 1;
   }
-  init(grid);
+  init(*grid);
 
   // temperature increasing cycle
-  cycle(grid, TEMP_INITIAL, TEMP_FINAL, TEMP_DELTA, DELTA_T, stat);
+  cycle(*grid, TEMP_INITIAL, TEMP_FINAL, TEMP_DELTA, DELTA_T, stat);
 
   // stop timer
   double elapsed = omp_get_wtime() - start;
@@ -158,7 +158,7 @@ int main(void) {
   }
 
   // free memory
-  free(grid);
+  free(*grid);
   
   return 0;
 }
