@@ -19,8 +19,8 @@ Los dispositivos utilizados para hacer las pruebas son:
       - Add: 5.6406 GB/s
       - Triad: 5.6376 GB/s
     - CPU:
-      - Doble float: 1367.3276 GFLOPS
-      - Simple float: 2847.5789 GFLOPS
+      - Doble float: 7.7383 GFLOPS
+      - Simple float: 14.2408 GFLOPS
 - PC Escritorio:
   - CPU: 12th Gen Intel(R) Core(TM) i5-12400F @ 2.5GHz
   - Memoria:
