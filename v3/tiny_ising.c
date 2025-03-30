@@ -18,8 +18,7 @@
 #include <omp.h>
 #include <stdint.h>
 #include <stdio.h>  // printf()
-#include <stdlib.h> // abs()
-#include <string.h>
+#include <stdlib.h> // abs(), malloc(), free()
 #include <time.h>   // time()
 
 
@@ -29,7 +28,7 @@
 #define N (L * L)   // system size
 #define SEED 0xC4FE //(time(NULL)) // random seed
 
-// temperature, E, E^2, E^4, M, M^2, M^4
+// temperatura, E, E^2, E^4, M, M^2, M^4
 struct statpoint {
   double t;
   double e;
@@ -40,7 +39,7 @@ struct statpoint {
   double m4;
 };
 
-static void cycle(int8_t *grid[N], const double min, const double max,
+static void cycle(Grid *grid, const double min, const double max,
                   const double step, const unsigned int calc_step,
                   struct statpoint stats[]) {
 
@@ -52,18 +51,18 @@ static void cycle(int8_t *grid[N], const double min, const double max,
 
     // equilibrium phase
     for (unsigned int j = 0; j < TRAN; ++j) {
-      update(temp, *grid);
+      update(temp, grid);
     }
 
     // measurement phase
     unsigned int measurements = 0;
     double e = 0.0, e2 = 0.0, e4 = 0.0, m = 0.0, m2 = 0.0, m4 = 0.0;
     for (unsigned int j = 0; j < TMAX; ++j) {
-      update(temp, *grid);
+      update(temp, grid);
       if (j % calc_step == 0) {
         double energy = 0.0, mag = 0.0;
         int M_max = 0;
-        energy = calculate(*grid, &M_max);
+        energy = calculate(grid, &M_max);
         mag = abs(M_max) / (float)N;
         e += energy;
         e2 += energy * energy;
@@ -86,11 +85,57 @@ static void cycle(int8_t *grid[N], const double min, const double max,
   }
 }
 
-
-static void init(int8_t *grid[N]) {
-  memset(grid, 1, N * sizeof(int8_t)); // all spins up
+// Inicializa la matriz grid con valores 1
+static void init(Grid *grid) {
+  for (unsigned int i = 0; i < L; ++i) {
+    for (unsigned int j = 0; j < L; ++j) {
+      grid->rows[i][j] = 1;
+    }
+  }
 }
 
+// Aloca memoria contigua para la matriz grid
+static Grid *allocate_grid() {
+  Grid *grid = (Grid *)malloc(sizeof(Grid));
+  if (grid == NULL) {
+    fprintf(stderr,
+            "Error: No se pudo alocar memoria para la estructura Grid\n");
+    exit(EXIT_FAILURE);
+  }
+
+  // Alocar el bloque contiguo de datos
+  grid->data = (int8_t *)malloc(L * L * sizeof(int8_t));
+  if (grid->data == NULL) {
+    fprintf(stderr,
+            "Error: No se pudo alocar memoria para los datos del grid\n");
+    free(grid);
+    exit(EXIT_FAILURE);
+  }
+
+  // Alocar array de punteros a filas
+  grid->rows = (int8_t **)malloc(L * sizeof(int8_t *));
+  if (grid->rows == NULL) {
+    fprintf(stderr,
+            "Error: No se pudo alocar memoria para los punteros de fila\n");
+    free(grid->data);
+    free(grid);
+    exit(EXIT_FAILURE);
+  }
+
+  // Inicializar los punteros de fila
+  for (unsigned int i = 0; i < L; ++i) {
+    grid->rows[i] = &(grid->data[i * L]);
+  }
+
+  return grid;
+}
+
+// Libera la memoria alojada para la matriz grid
+static void free_grid(Grid *grid) {
+  free(grid->data); // Liberar el bloque de datos
+  free(grid->rows); // Liberar los punteros de fila
+  free(grid);       // Liberar la estructura
+}
 
 int main(void) {
   // parameter checking
@@ -130,16 +175,15 @@ int main(void) {
   // start timer
   double start = omp_get_wtime();
 
-  // clear the grid
-  int8_t *grid[N] = calloc(N, sizeof(int8_t));
-  if (grid == NULL) {
-    fprintf(stderr, "Error: Unable to allocate memory for grid\n");
-    return 1;
-  }
-  init(*grid);
+  // Alocar e inicializar el grid
+  Grid *grid = allocate_grid();
+  init(grid);
 
   // temperature increasing cycle
-  cycle(*grid, TEMP_INITIAL, TEMP_FINAL, TEMP_DELTA, DELTA_T, stat);
+  cycle(grid, TEMP_INITIAL, TEMP_FINAL, TEMP_DELTA, DELTA_T, stat);
+
+  // Liberar la memoria del grid
+  free_grid(grid);
 
   // stop timer
   double elapsed = omp_get_wtime() - start;
@@ -153,9 +197,6 @@ int main(void) {
            stat[i].e4 / ((double)N * N * N * N), stat[i].m, stat[i].m2,
            stat[i].m4);
   }
-
-  // free memory
-  free(*grid);
 
   return 0;
 }

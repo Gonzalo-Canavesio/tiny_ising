@@ -1,7 +1,11 @@
 #include "params.h"
-
 #include <stdint.h>
 
-void update(const float temp, int8_t *grid[L*L]);
+typedef struct {
+  int8_t *data;
+  int8_t **rows;
+} Grid;
 
-double calculate(int8_t *grid[L*L], int *M_max);
+void update(const float temp, Grid *grid);
+
+double calculate(Grid *grid, int *M_max);
