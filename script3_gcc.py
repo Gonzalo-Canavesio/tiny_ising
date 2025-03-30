@@ -3,8 +3,8 @@ from time import time
 
 CC = ["gcc"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
-EXTRAFLAGS = ["-lomp", "-lm"]
-FILES = ["v3/ising.c", "v3/tiny_ising.c", "v3/xoshiro256plus.c"]
+EXTRAFLAGS = ["-lm"]
+FILES = ["v3.1/ising.c", "v3.1/tiny_ising.c", "v3.1/xoshiro256plus.c"]
 
 PARAMS_LIST = [256, 384, 512, 1024, 2048, 4096]
 OPTIMIZATIONS = ["-O2", "-march=native", "-funroll-loops", "-ffast-math", "-flto"]
