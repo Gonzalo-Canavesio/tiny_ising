@@ -29,6 +29,15 @@ Los dispositivos utilizados para hacer las pruebas son:
     - Cache L2: 1.25 MiB (por core)
     - Cache L3: 18 MiB (compartida)
   - SO: Microsoft Windows 11 Pro (v10.0.22631)
+  - Benchmarks:
+    - Memoria: 
+      - Copy: 19.186 GB/s
+      - Scale: 18.6969 GB/s
+      - Add: 21.6422 GB/s
+      - Triad: 21.557 GB/s
+    - CPU:
+      - Doble float: 340.1408 GFLOPS
+      - Simple float: 665.2963 GFLOPS
 - Server Atom:
   - CPU: AMD EPYC 7643 48-Core Processor @ 2.3 GHz
   - Memoria:
