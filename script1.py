@@ -11,7 +11,7 @@ FILES_VERSIONS = [
 ]
 
 for files in FILES_VERSIONS:
-    for line_size in [256, 1024]:
+    for line_size in [256,384, 512, 1024]:
         best_performance = 0.0
 
         cmd = CC + CFLAGS + files + EXTRAFLAGS + [f"-DL={line_size}"]
