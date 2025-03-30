@@ -3,7 +3,7 @@ from time import time
 
 CC = ["gcc"]
 CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
-EXTRAFLAGS = ["-fopenmp", "-lm"]
+EXTRAFLAGS = ["-lomp", "-lm"]
 FILES = ["v3/ising.c", "v3/tiny_ising.c", "v3/xoshiro256plus.c"]
 
 PARAMS_LIST = [256, 384, 512, 1024, 2048, 4096]
