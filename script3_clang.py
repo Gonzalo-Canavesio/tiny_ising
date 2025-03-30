@@ -6,7 +6,7 @@ CFLAGS = ["-std=c11", "-Wall", "-Wextra"]
 EXTRAFLAGS = ["-lm"]
 FILES = ["v3.1/ising.c", "v3.1/tiny_ising.c", "v3.1/xoshiro256plus.c"]
 
-PARAMS_LIST = [256, 384, 512, 1024, 4096, 8192]
+PARAMS_LIST = [256, 384, 512, 1024, 2048, 4096]
 OPTIMIZATIONS = ["-O3", "-march=native", "-funroll-loops", "-flto"]
 
 for line_size in PARAMS_LIST:
