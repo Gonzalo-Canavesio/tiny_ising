@@ -134,7 +134,11 @@ int main(void) {
   double start = omp_get_wtime();
 
   // clear the grid
-  int8_t grid[L][L] = {{0}};
+  int8_t grid[L][L] = calloc(L * L, sizeof(int8_t));
+  if (grid == NULL) {
+    fprintf(stderr, "Error: Unable to allocate memory for grid\n");
+    return 1;
+  }
   init(grid);
 
   // temperature increasing cycle
@@ -153,5 +157,8 @@ int main(void) {
            stat[i].m4);
   }
 
+  // free memory
+  free(grid);
+  
   return 0;
 }
