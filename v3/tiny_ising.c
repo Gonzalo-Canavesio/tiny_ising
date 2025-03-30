@@ -19,6 +19,7 @@
 #include <stdint.h>
 #include <stdio.h>  // printf()
 #include <stdlib.h> // abs()
+#include <string.h>
 #include <time.h>   // time()
 
 
@@ -39,7 +40,7 @@ struct statpoint {
   double m4;
 };
 
-static void cycle(int8_t *grid[L][L], const double min, const double max,
+static void cycle(int8_t *grid[N], const double min, const double max,
                   const double step, const unsigned int calc_step,
                   struct statpoint stats[]) {
 
@@ -86,12 +87,8 @@ static void cycle(int8_t *grid[L][L], const double min, const double max,
 }
 
 
-static void init(int8_t *grid[L][L]) {
-  for (unsigned int i = 0; i < L; ++i) {
-    for (unsigned int j = 0; j < L; ++j) {
-      grid[i][j] = 1;
-    }
-  }
+static void init(int8_t *grid[N]) {
+  memset(grid, 1, N * sizeof(int8_t)); // all spins up
 }
 
 
@@ -134,8 +131,8 @@ int main(void) {
   double start = omp_get_wtime();
 
   // clear the grid
-  int8_t *grid[L][L] = calloc(L * L, sizeof(int8_t));
-  if (*grid == NULL) {
+  int8_t *grid[N] = calloc(N, sizeof(int8_t));
+  if (grid == NULL) {
     fprintf(stderr, "Error: Unable to allocate memory for grid\n");
     return 1;
   }
@@ -159,6 +156,6 @@ int main(void) {
 
   // free memory
   free(*grid);
-  
+
   return 0;
 }
